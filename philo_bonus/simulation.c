@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   simulation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/13 17:08:45 by abalaban          #+#    #+#             */
+/*   Updated: 2022/02/13 17:11:25 by abalaban         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	print_status(t_philo *philo, char *str)
 {
 	long long	time;
-	int 		index;
+	int			index;
 
 	index = philo->index;
 	time = get_time_ms() - philo->born_time_ms;
 	printf("%lld #%d %s\n", time, index, str);
 }
 
-void	*is_live(void *ptr) 
+void	*is_live(void *ptr)
 {
 	t_philo	*philo;
 
@@ -22,7 +34,7 @@ void	*is_live(void *ptr)
 		{
 			print_status(philo, "died");
 			kill(0, SIGINT);
-			return(NULL);
+			return (NULL);
 		}
 		sem_post(philo->sem->end);
 		usleep(1000);
@@ -44,11 +56,11 @@ void	philo_eat(t_philo *philo)
 	print_status(philo, "has taken another fork");
 	philo->last_meal = get_time_ms();
 	print_status(philo, "is eating");
-	usleep(philo->rules->eat_t *1000);
+	usleep(philo->rules->eat_t * 1000);
 	sem_post(philo->sem->fork);
 }
 
-void simulation(t_philo *philo)
+void	simulation(t_philo *philo)
 {
 	int			i;
 	pthread_t	thread_id;
@@ -61,7 +73,7 @@ void simulation(t_philo *philo)
 		philo_eat(philo);
 		philo_sleep(philo);
 		usleep(1000);
-		if(i != -1)
+		if (i != -1)
 			i--;
 	}
 	exit(0);

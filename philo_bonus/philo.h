@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abalaban <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/13 17:04:50 by abalaban          #+#    #+#             */
+/*   Updated: 2022/02/13 17:08:37 by abalaban         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -44,7 +56,7 @@ void		ft_error(char *msg);
 void		cleanup(t_philo *philo, t_semaphore *sem);
 int			ft_nbrlen(long n);
 long		ft_atoi(const char *str);
-long long	get_time_ms(void);
+long long	get_time_ms(void );
 void		ft_usleep(int len);
 void		*is_live(void *ptr);
 void		philo_eat(t_philo *philo);
@@ -53,10 +65,9 @@ void		simulation(t_philo *philo);
 void		launch_process(t_philo *philos);
 void		init_semaphore(t_semaphore	*sem, int len);
 void		init_rules(t_rules *rules, int argc, char **argv);
-t_philo		*init_philos(t_rules *rules,t_semaphore *sem);
+t_philo		*init_philos(t_rules *rules, t_semaphore *sem);
 int			ft_arg_check(int argc, char **argv);
 void		starter(t_philo *philos);
-void		end_process(t_philo *philo,t_semaphore *sem);
-char		**ft_split(const char* s, char c);
-
+void		end_process(t_philo *philo, t_semaphore *sem);
+char		**ft_split(const char	*s, char c);
 #endif
